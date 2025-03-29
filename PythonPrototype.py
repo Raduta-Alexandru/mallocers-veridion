@@ -12,23 +12,30 @@ status_url = f"{host}/status"
 
 NUM_ROUNDS = 5
 
-def previous_round(json_word):
+def previous_round(status, round_id):
+    #checking if there was a previous round
+    if round_id == 1:
+        return random.randint(20, 40)
     # determine if we are player 1 or 2
+    player = 
     if player == 1:
-        mycost = "p1_word_cost"
-        mytotalcost = "p1_total_cost"
-        outcome = "p1_won"
+        mycost = status["p1_word_cost"]
+        mytotalcost = status["p1_total_cost"]
+        outcome = status["p1_won"]
     else:
-        mycost = "p2_word_cost"
-        mytotalcost = "p2_total_cost"
-        outcome = "p2_won"
-    #
-    if 
+        mycost = status["p2_word_cost"]
+        mytotalcost = status["p2_total_cost"]
+        outcome = status["p2_won"]
+    # seeing if we won or lost
+    if outcome:
+        #we won the previous round
 
 
-def what_beats(word):
-    sleep(random.randint(1, 3))
-    return random.randint(1, 60)
+
+
+def what_beats(word, round_id, status):
+    
+    return #the id of the word
 
 def play_game(player_id):
 
