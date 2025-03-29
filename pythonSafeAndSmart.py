@@ -55,7 +55,6 @@ def play_game(player_id):
 
 def main():
     pid = "oJnREy4wVD"
-    pid = "1"
     play_game(pid)
 
 if __name__ == "__main__":
