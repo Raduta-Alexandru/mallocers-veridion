@@ -12,6 +12,19 @@ status_url = f"{host}/status"
 
 NUM_ROUNDS = 5
 
+def previous_round(json_word):
+    # determine if we are player 1 or 2
+    if player == 1:
+        mycost = "p1_word_cost"
+        mytotalcost = "p1_total_cost"
+        outcome = "p1_won"
+    else:
+        mycost = "p2_word_cost"
+        mytotalcost = "p2_total_cost"
+        outcome = "p2_won"
+    #
+    if 
+
 
 def what_beats(word):
     sleep(random.randint(1, 3))
