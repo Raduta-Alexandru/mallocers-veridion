@@ -51,7 +51,6 @@ def play_game(player_id):
         data = {"player_id": player_id, "word_id": choosen_word, "round_id": round_id}
         response = requests.post(post_url, json=data)
         print(response.json())
-        print(low, high)
 
 def main():
     pid = "oJnREy4wVD"
