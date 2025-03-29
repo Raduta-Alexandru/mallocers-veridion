@@ -3,7 +3,7 @@ from time import sleep
 import random
 import json
 with open('cuvinte.json') as file:
-    data = json.load(f)
+    data = json.load(file)
 
 host = ""
 post_url = f"{host}/submit-word"
