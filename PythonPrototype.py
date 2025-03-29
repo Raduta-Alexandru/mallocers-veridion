@@ -1,6 +1,9 @@
 import requests
 from time import sleep
 import random
+import json
+with open('cuvinte.json') as file:
+    data = json.load(f)
 
 host = ""
 post_url = f"{host}/submit-word"
