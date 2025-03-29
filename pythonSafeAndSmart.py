@@ -12,8 +12,9 @@ NUM_ROUNDS = 5
 
 def updateAgresivity(low, high, status):
     playerNr = 1
-    total_price = status.json()['p1_total_cost'] if playerNr == 1 else status.json()['p2_total_cost']
-    enemy_total_price = status.json()['p2_total_cost'] if playerNr == 1 else status.json()['p1_total_cost']
+    s = status.json()["status"]
+    total_price = s['p1_total_cost'] if playerNr == 1 else s['p2_total_cost']
+    enemy_total_price = s['p2_total_cost'] if playerNr == 1 else s['p1_total_cost']
     total_diff = enemy_total_price - total_price
     if total_diff > 0:
         high = min(60, high + 2)
@@ -50,10 +51,11 @@ def play_game(player_id):
         data = {"player_id": player_id, "word_id": choosen_word, "round_id": round_id}
         response = requests.post(post_url, json=data)
         print(response.json())
+        print(low, high)
 
 def main():
-    pid = 1
-    #pid = oJnREy4wVD
+    pid = "oJnREy4wVD"
+    pid = "1"
     play_game(pid)
 
 if __name__ == "__main__":
