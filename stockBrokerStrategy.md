@@ -13,4 +13,4 @@ We analise the result of the previous round which can have two outcomes
 
 # How de we interpret losing or tieing
 
-    If we lost we increase the price of our next word, but no more than the difference of out absolute cost difference IF we are leading
+    If we lost we increase the price of our next word, but no more than the difference of our absolute cost difference IF we are leading

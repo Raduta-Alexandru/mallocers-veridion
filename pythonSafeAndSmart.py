@@ -9,10 +9,8 @@ status_url = f"{host}/status"
 
 NUM_ROUNDS = 5
 
-
 def what_beats(word):
-    sleep(random.randint(1, 3))
-    return random.randint(1, 60)
+    return random.randint(20, 30)
 
 def play_game(player_id):
 
@@ -36,10 +34,8 @@ def play_game(player_id):
         print(response.json())
 
 def main():
-    pid = input("Enter your player ID: ").strip()
-    if not pid:
-        print("Player ID is required!")
-        return
+    pid = 1
+    #pid = oJnREy4wVD
     play_game(pid)
 
 if __name__ == "__main__":

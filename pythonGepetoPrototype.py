@@ -13,46 +13,35 @@ status_url = f"{host}/status"
 
 NUM_ROUNDS = 5
 player_id = None
-
+current_index = random.randint(20, 40)
 
 def previous_round(status, round_id, sys_word):
-    if round_id == 1:
-        return random.choice(data[20:41])["id"]
+    global current_index
 
-    p1_id = status.get("p1_id")
-    p2_id = status.get("p2_id")
+    if round_id == 1:
+        return random.randint(20, 40)
+
+    # Determine which player we are
+    p1_id = status["p1_id"]
+    p2_id = status["p2_id"]
     player = 1 if player_id == p1_id else 2
 
-    if player == 1:
-        mycost = status["p1_word_cost"]
-        mytotal = status["p1_total_cost"]
-        enemycost = status["p2_word_cost"]
-        enemytotal = status["p2_total_cost"]
-        outcome = status["p1_won"]
-    else:
-        mycost = status["p2_word_cost"]
-        mytotal = status["p2_total_cost"]
-        enemycost = status["p1_word_cost"]
-        enemytotal = status["p1_total_cost"]
-        outcome = status["p2_won"]
-
-    cost_diff = mytotal - enemytotal
+    outcome = status["p1_won"] if player == 1 else status["p2_won"]
 
     if outcome:
-        target_cost = max(1, mycost - abs(cost_diff) // 2)
+        # We won → go a bit weaker (save strength)
+        step = random.randint(3, 6)
+        current_index = max(0, current_index - step)
     else:
-        if cost_diff < 0:
-            target_cost = min(45, mycost + abs(cost_diff) // 2)
-        else:
-            target_cost = min(45, mycost + abs(cost_diff) // 3)
+        # We lost → go stronger
+        step = random.randint(4, 8)
+        current_index = min(len(data) - 1, current_index + step)
 
-    best_word = min(data, key=lambda w: abs(w["cost"] - target_cost))
-    return best_word["id"]
+    return data[current_index]["id"]
 
 
 def what_beats(word, round_id, status):
     return previous_round(status, round_id, word)
-
 
 def play_game(pid):
     global player_id
@@ -78,3 +67,13 @@ def play_game(pid):
         data_payload = {"player_id": player_id, "word_id": chosen_word, "round_id": round_id}
         response = requests.post(post_url, json=data_payload)
         print(response.json())
+
+def main():
+    pid = input("Enter your player ID: ").strip()
+    if not pid:
+        print("Player ID is required!")
+        return
+    play_game(pid)
+
+if __name__ == "__main__":
+    main()
